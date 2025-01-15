@@ -1,0 +1,7 @@
+{
+  "$schema": "https://dev.wix.com/wix-cli/schemas/dashboard-modal.json",
+  "id": "90917990-601b-4532-b825-8d5586a3e46b",
+  "title": "Add Packaging Fee",
+  "width": 550,
+  "height": 600
+}

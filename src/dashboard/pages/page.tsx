@@ -6,7 +6,7 @@ import {
   Image,
   Page,
   TextButton,
-  WixDesignSystemProvider,
+  WixDesignSystemProvider
 } from '@wix/design-system';
 import '@wix/design-system/styles.global.css';
 import * as Icons from '@wix/wix-ui-icons-common';
@@ -17,34 +17,32 @@ const Index: FC = () => {
     <WixDesignSystemProvider features={{ newColorsBranding: true }}>
       <Page>
         <Page.Header
-          title="Dashboard Page"
-          subtitle="Add management capabilities to your app."
+          title='Dashboard Page'
+          subtitle='Add management capabilities to your app.'
           actionsBar={
             <Button
               onClick={() => {
-                dashboard.showToast({
-                  message: 'Your first toast message!',
-                });
+                dashboard.openModal('90917990-601b-4532-b825-8d5586a3e46b');
               }}
-              prefixIcon={<Icons.GetStarted />}
+              prefixIcon={<Icons.OrderAdd />}
             >
-              Show a toast
+              Add Packing Fee
             </Button>
           }
         />
         <Page.Content>
           <EmptyState
             image={
-              <Image fit="contain" height="100px" src={wixLogo} transparent />
+              <Image fit='contain' height='100px' src={wixLogo} transparent />
             }
-            title="Start editing this dashboard page"
-            subtitle="Learn how to work with dashboard pages and how to add functionality to them using Wix APIs."
-            theme="page"
+            title='Start editing this dashboard page'
+            subtitle='Learn how to work with dashboard pages and how to add functionality to them using Wix APIs.'
+            theme='page'
           >
             <TextButton
-              as="a"
-              href="https://dev.wix.com/docs/build-apps/develop-your-app/frameworks/wix-cli/supported-extensions/dashboard-extensions/dashboard-pages/add-dashboard-page-extensions-with-the-cli#add-dashboard-page-extensions-with-the-cli"
-              target="_blank"
+              as='a'
+              href='https://dev.wix.com/docs/build-apps/develop-your-app/frameworks/wix-cli/supported-extensions/dashboard-extensions/dashboard-pages/add-dashboard-page-extensions-with-the-cli#add-dashboard-page-extensions-with-the-cli'
+              target='_blank'
               prefixIcon={<Icons.ExternalLink />}
             >
               Dashboard pages documentation
