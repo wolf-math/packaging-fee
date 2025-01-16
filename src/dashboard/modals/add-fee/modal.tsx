@@ -2,8 +2,6 @@ import React, { useEffect, useState, type FC } from 'react';
 import { dashboard } from '@wix/dashboard';
 import {
   WixDesignSystemProvider,
-  Text,
-  Box,
   CustomModalLayout,
   InputArea,
   Dropdown,
