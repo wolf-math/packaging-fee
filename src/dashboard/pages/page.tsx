@@ -33,12 +33,19 @@ const FeesTable: FC = () => {
     itemKey: (item) => item.id
   });
 
-  const actions = useOptimisticActions(state.collection);
+  const optimisticActions = useOptimisticActions(state.collection);
 
   const addPackingFee = (fee: PackingFee) => {
-    actions.createOne(fee, {
+    optimisticActions.createOne(fee, {
       submit: async () => {
-        packingFees.push(fee);
+        await httpClient.fetchWithAuth(
+          `${import.meta.env.BASE_API_URL}/packing-fees`,
+          {
+            method: 'POST',
+            body: JSON.stringify(fee)
+          }
+        );
+        // packingFees.push(fee);
         return [fee];
       },
       successToast: `${fee.name} was succesfully added`
