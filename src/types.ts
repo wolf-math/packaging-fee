@@ -6,5 +6,5 @@ export type PackingFee = {
   description: string;
   price: string;
   collectionId: string;
-  collection: collections.Collection;
+  collection?: collections.Collection;
 };
