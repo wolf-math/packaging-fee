@@ -1,0 +1,20 @@
+{
+  "$schema": "https://dev.wix.com/wix-cli/schemas/site-plugin.json",
+  "id": "4df894bd-eeb6-45bf-a54d-9e0e6632e664",
+  "referenceComponentId": "78c73a35-5c83-40dd-b8cb-9c744252c4c5",
+  "marketData": {
+    "name": "packing-indicator",
+    "logoUrl": "{{PUBLIC_URL}}/packing-indicator/logo.svg"
+  },
+  "placements": [
+    {
+      "appDefinitionId": "a0c68605-c2e7-4c8d-9ea1-767f9770e087",
+      "widgetId": "6a25b678-53ec-4b37-a190-65fcd1ca1a63",
+      "slotId": "product-page-details-5"
+    }
+  ],
+  "installation": {
+    "autoAddToSite": true
+  }
+}
+

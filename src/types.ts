@@ -5,6 +5,6 @@ export type PackingFee = {
   name: string;
   description: string;
   price: string;
-  collectionId: string;
+  collectionId?: string;
   collection?: collections.Collection;
 };

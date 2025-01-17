@@ -12,7 +12,6 @@ import {
   useOptimisticActions,
   useTableCollection
 } from '@wix/patterns';
-import { packingFees } from '../../consts';
 import { httpClient } from '@wix/essentials';
 
 const FeesTable: FC = () => {
@@ -45,7 +44,6 @@ const FeesTable: FC = () => {
             body: JSON.stringify(fee)
           }
         );
-        // packingFees.push(fee);
         return [fee];
       },
       successToast: `${fee.name} was succesfully added`
@@ -87,7 +85,7 @@ const FeesTable: FC = () => {
             {
               title: '# of products',
               id: 'products',
-              render: (fee) => fee.collection?.numberOfProducts
+              render: (fee) => fee.collection?.numberOfProducts || 0
             }
           ]}
         />

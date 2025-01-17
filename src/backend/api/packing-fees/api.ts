@@ -37,7 +37,9 @@ const mergeFeesWithCollection = (collections: collections.Collection[]) => {
 export async function GET(req: Request) {
   // console.log('Log from GET.');
   // return new Response('Response from GET.');
+
   const collectionIds = packingFees.map((fee) => fee.collectionId);
+  console.log('Collection IDs:', collectionIds);
   const collectionsResponse = await collections
     .queryCollections()
     .in('_id', collectionIds)

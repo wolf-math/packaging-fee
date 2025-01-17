@@ -7,7 +7,9 @@
     "@wix/design-system": "^1.0.0",
     "@wix/patterns": "^1.144.0",
     "@wix/stores": "^1.0.343",
-    "@wix/wix-ui-icons-common": "^3.0.0"
+    "@wix/wix-ui-icons-common": "^3.0.0",
+    "@wix/editor": "^1.338.0",
+    "react-to-webcomponent": "^2.0.0"
   },
   "devDependencies": {
     "@types/react": "^16.0.0",
@@ -15,7 +17,8 @@
     "@wix/cli-app": "^1.0.0",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "@types/react-dom": "^16.0.0"
   },
   "scripts": {
     "wix": "wix",
