@@ -1,4 +1,4 @@
-export const packingFees = [
+export const additionalFees = [
   {
     id: '01',
     name: 'Fragile Item',

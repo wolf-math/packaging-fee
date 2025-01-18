@@ -2,7 +2,7 @@ import React, { type FC } from 'react';
 import { dashboard } from '@wix/dashboard';
 import { WixDesignSystemProvider } from '@wix/design-system';
 import '@wix/design-system/styles.global.css';
-import { PackingFee } from '../../types';
+import { AdditionalFee } from '../../types';
 import { WixPatternsProvider } from '@wix/patterns/provider';
 import { CollectionPage } from '@wix/patterns/page';
 import {
@@ -13,32 +13,35 @@ import {
   useTableCollection
 } from '@wix/patterns';
 import { httpClient } from '@wix/essentials';
+// import { additionalFees } from '../../consts';
 
 const FeesTable: FC = () => {
-  const state = useTableCollection<PackingFee>({
+  const state = useTableCollection<AdditionalFee>({
     queryName: 'fees-table',
+    itemKey: (item) => item.id,
     fetchData: async () => {
+      // return {items: additionalFees, total: additionalFee.length}
       const response = await httpClient.fetchWithAuth(
-        `${import.meta.env.BASE_API_URL}/packing-fees`
+        `${import.meta.env.BASE_API_URL}/additional-fees`
       );
 
       const data = await response.json();
+      // console.log(data);
 
       return {
         items: data,
         total: data.length
       };
-    },
-    itemKey: (item) => item.id
+    }
   });
 
   const optimisticActions = useOptimisticActions(state.collection);
 
-  const addPackingFee = (fee: PackingFee) => {
+  const addAdditionalFee = (fee: AdditionalFee) => {
     optimisticActions.createOne(fee, {
       submit: async () => {
         await httpClient.fetchWithAuth(
-          `${import.meta.env.BASE_API_URL}/packing-fees`,
+          `${import.meta.env.BASE_API_URL}/additional-fees`,
           {
             method: 'POST',
             body: JSON.stringify(fee)
@@ -59,7 +62,7 @@ const FeesTable: FC = () => {
             label='Add Fee'
             onClick={() => {
               dashboard.openModal('90917990-601b-4532-b825-8d5586a3e46b', {
-                addPackingFee
+                addAdditionalFee
               });
             }}
           />
@@ -81,7 +84,7 @@ const FeesTable: FC = () => {
               id: 'collection',
               render: (fee) => fee.collection?.name
             },
-            { title: 'price', id: 'price', render: (fee) => fee.price },
+            { title: 'price', id: 'price', render: (fee) => `$${fee.price}` },
             {
               title: '# of products',
               id: 'products',
@@ -95,10 +98,6 @@ const FeesTable: FC = () => {
 };
 
 const Index: FC = () => {
-  const addPackingFee = (fee: PackingFee) => {
-    console.log(fee);
-  };
-
   return (
     <WixPatternsProvider>
       <WixDesignSystemProvider features={{ newColorsBranding: true }}>
@@ -109,3 +108,5 @@ const Index: FC = () => {
 };
 
 export default Index;
+
+// 45:11

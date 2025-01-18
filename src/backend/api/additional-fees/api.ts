@@ -17,12 +17,12 @@ function MyComponent() {
 };
 */
 
-import { packingFees } from '../../../consts';
+import { additionalFees } from '../../../consts';
 import { collections } from '@wix/stores';
-import { PackingFee } from '../../../types';
+import { AdditionalFee } from '../../../types';
 
 const mergeFeesWithCollection = (collections: collections.Collection[]) => {
-  return packingFees.map((fee) => {
+  return additionalFees.map((fee) => {
     const collection = collections.find(
       (collection) => collection._id === fee.collectionId
     );
@@ -38,14 +38,16 @@ export async function GET(req: Request) {
   // console.log('Log from GET.');
   // return new Response('Response from GET.');
 
-  const collectionIds = packingFees.map((fee) => fee.collectionId);
-  console.log('Collection IDs:', collectionIds);
+  const collectionIds = additionalFees.map((fee) => fee.collectionId);
+  // console.log('Collection IDs:', collectionIds);
   const collectionsResponse = await collections
     .queryCollections()
     .in('_id', collectionIds)
     .find();
 
-  const fees: PackingFee[] = mergeFeesWithCollection(collectionsResponse.items);
+  const fees: AdditionalFee[] = mergeFeesWithCollection(
+    collectionsResponse.items
+  );
   return Response.json(fees);
 }
 

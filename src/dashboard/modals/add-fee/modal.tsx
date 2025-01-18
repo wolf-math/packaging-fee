@@ -13,16 +13,16 @@ import {
 } from '@wix/design-system';
 import '@wix/design-system/styles.global.css';
 import { width, height, title } from './modal.json';
-import type { PackingFee } from '../../../types';
+import type { AdditionalFee } from '../../../types';
 import { collections } from '@wix/stores';
 
 type Props = {
-  addPackingFee: (item: PackingFee) => void;
+  addAdditionalFee: (item: AdditionalFee) => void;
 };
 
 // @ts-ignore
-const Modal: FC = ({ addPackingFee }) => {
-  const [packingFee, setPackingFee] = useState<Partial<PackingFee>>();
+const Modal: FC = ({ addAdditionalFee }) => {
+  const [additionalFee, setAdditionalFee] = useState<Partial<AdditionalFee>>();
   const [siteCollections, setSiteCollections] =
     useState<collections.Collection[]>();
 
@@ -44,7 +44,7 @@ const Modal: FC = ({ addPackingFee }) => {
         secondaryButtonText='Cancel'
         primaryButtonOnClick={() => {
           dashboard.closeModal();
-          addPackingFee(packingFee as PackingFee);
+          addAdditionalFee(additionalFee as AdditionalFee);
         }}
         secondaryButtonOnClick={() => dashboard.closeModal()}
         onCloseButtonClick={() => dashboard.closeModal()}
@@ -64,8 +64,8 @@ const Modal: FC = ({ addPackingFee }) => {
                         };
                       })}
                       onSelect={(option) =>
-                        setPackingFee({
-                          ...packingFee,
+                        setAdditionalFee({
+                          ...additionalFee,
                           collectionId: `${option.id}`
                         })
                       }
@@ -75,9 +75,12 @@ const Modal: FC = ({ addPackingFee }) => {
                 <Cell span={6}>
                   <FormField label='name'>
                     <Input
-                      value={packingFee?.name!}
+                      value={additionalFee?.name!}
                       onChange={(val) =>
-                        setPackingFee({ ...packingFee, name: val.target.value })
+                        setAdditionalFee({
+                          ...additionalFee,
+                          name: val.target.value
+                        })
                       }
                     />
                   </FormField>
@@ -86,10 +89,10 @@ const Modal: FC = ({ addPackingFee }) => {
                   <FormField label='Packaging Fee'>
                     <NumberInput
                       hideStepper
-                      value={packingFee?.price}
+                      value={additionalFee?.price}
                       min={0}
                       onChange={(val) =>
-                        setPackingFee({ ...packingFee, price: `${val}` })
+                        setAdditionalFee({ ...additionalFee, price: `${val}` })
                       }
                     />
                   </FormField>
@@ -97,10 +100,10 @@ const Modal: FC = ({ addPackingFee }) => {
                 <Cell>
                   <FormField label='Description'>
                     <InputArea
-                      value={packingFee?.description}
+                      value={additionalFee?.description}
                       onChange={(val) =>
-                        setPackingFee({
-                          ...packingFee,
+                        setAdditionalFee({
+                          ...additionalFee,
                           description: val.target.value
                         })
                       }

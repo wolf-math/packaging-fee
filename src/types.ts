@@ -1,6 +1,6 @@
 import { collections } from '@wix/stores';
 
-export type PackingFee = {
+export type AdditionalFee = {
   id: string;
   name: string;
   description: string;
