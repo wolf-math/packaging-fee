@@ -11,8 +11,6 @@ type Props = {
 
 // To learn more about "Old Product page" go to our docs: https://wix.to/awqi86g
 const CustomElement: FC<Props> = ({ productId }) => {
-  console.log('PRODUCTID', productId);
-
   const [additionalFee, setAddtionalFee] = useState<AdditionalFee>();
 
   useEffect(() => {
@@ -28,7 +26,6 @@ const CustomElement: FC<Props> = ({ productId }) => {
     getAddtionalFee();
   }, []);
 
-  console.log('ADDITIONAL FEE', additionalFee);
   return (
     <div className={styles.root}>
       <p className={styles.badge} style={{ backgroundColor: '#f9e3aa' }}>
