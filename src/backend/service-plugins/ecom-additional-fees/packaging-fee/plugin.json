@@ -1,0 +1,5 @@
+{
+  "$schema": "https://dev.wix.com/wix-cli/schemas/ecom-additional-fees.json",
+  "id": "9eb0d250-1652-4f00-adca-d4603c8c7a0b",
+  "name": "packaging-fee"
+}
