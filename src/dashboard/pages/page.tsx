@@ -13,6 +13,8 @@ import {
   useTableCollection
 } from '@wix/patterns';
 import { httpClient } from '@wix/essentials';
+
+// Started with hardcoded data
 // import { additionalFees } from '../../consts';
 
 const FeesTable: FC = () => {
@@ -20,13 +22,13 @@ const FeesTable: FC = () => {
     queryName: 'fees-table',
     itemKey: (item) => item.id,
     fetchData: async () => {
+      // when using hard coded data
       // return {items: additionalFees, total: additionalFee.length}
       const response = await httpClient.fetchWithAuth(
         `${import.meta.env.BASE_API_URL}/additional-fees`
       );
 
       const data = await response.json();
-      // console.log(data);
 
       return {
         items: data,

@@ -1,27 +1,31 @@
-import { additionalFees } from '@wix/ecom/service-plugins';
+// import { additionalFees } from '../../../../consts';
+import { additionalFees as servicePlugin } from '@wix/ecom/service-plugins';
+import { httpClient } from '@wix/essentials';
 
-// Temporary in-memory storage (replace with persistent storage in production)
-let feesData = [
-  {
-    id: '1',
-    code: 'packaging-fee',
-    name: 'Packaging Fee',
-    price: 10,
-    taxDetails: { taxable: true }
-  }
-];
+async function getAdditionalFees() {
+  const response = await httpClient.fetchWithAuth(
+    `${import.meta.env.BASE_API_URL}/additional-fees`
+  );
 
-// Register handlers
-additionalFees.provideHandlers({
-  // @ts-ignore
-  getAdditionalFees: async () => {
-    // Return all additional fees
-    return feesData;
-  },
-  // @ts-ignore
-  addAdditionalFee: async (fee) => {
-    // Add a new fee to the data
-    feesData.push(fee);
-    return fee;
+  const data = await response.json();
+
+  // get additional fees
+  return data[0];
+}
+
+servicePlugin.provideHandlers({
+  calculateAdditionalFees: async (payload) => {
+    const additionalFees = await getAdditionalFees();
+    return {
+      additionalFees: additionalFees.map((fee: any) => ({
+        code: fee.id,
+        name: fee.name,
+        price: fee.price,
+        taxDetails: {
+          taxable: true
+        }
+      })),
+      currency: 'USD'
+    };
   }
 });
