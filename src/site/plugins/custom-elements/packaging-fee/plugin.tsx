@@ -29,11 +29,12 @@ const CustomElement: FC<Props> = ({ productId }) => {
   return (
     <div className={styles.root}>
       <p className={styles.badge} style={{ backgroundColor: '#f9e3aa' }}>
-        {additionalFee?.name}
+        {/* {additionalFee?.name} */}
+        Packaging Fee
       </p>
       <p
         style={{ color: '#8c8a9a' }}
-      >{`${additionalFee?.description}. ${additionalFee?.price}`}</p>
+      >{`An Additional Packaging Fee will be added at checkout`}</p>
     </div>
   );
 };

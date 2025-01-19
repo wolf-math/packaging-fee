@@ -1,24 +1,27 @@
 import { additionalFees } from '@wix/ecom/service-plugins';
 
+// Temporary in-memory storage (replace with persistent storage in production)
+let feesData = [
+  {
+    id: '1',
+    code: 'packaging-fee',
+    name: 'Packaging Fee',
+    price: 10,
+    taxDetails: { taxable: true }
+  }
+];
+
+// Register handlers
 additionalFees.provideHandlers({
-  calculateAdditionalFees: async (payload) => {
-    const { request, metadata } = payload;
-    // Use the `request` and `metadata` received from Wix and
-    // apply custom logic.
-    return {
-      // Return your response exactly as documented to integrate with Wix.
-      // Return value example:
-      additionalFees: [
-        {
-          code: 'packaging-fee',
-          name: 'Packaging Fee',
-          price: '10',
-          taxDetails: {
-            taxable: true
-          }
-        }
-      ],
-      currency: 'USD'
-    };
+  // @ts-ignore
+  getAdditionalFees: async () => {
+    // Return all additional fees
+    return feesData;
+  },
+  // @ts-ignore
+  addAdditionalFee: async (fee) => {
+    // Add a new fee to the data
+    feesData.push(fee);
+    return fee;
   }
 });

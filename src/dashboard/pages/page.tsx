@@ -108,5 +108,3 @@ const Index: FC = () => {
 };
 
 export default Index;
-
-// 45:11
